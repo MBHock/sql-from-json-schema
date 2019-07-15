@@ -1,0 +1,1157 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Funktionen für 4AP-Prozess",
+    "version" : "1.0.0",
+    "title" : "gpinfoneu_4ap_prozess"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/gpinfoneu/4ap/prozess",
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/gpdaten/freigeben/{gpnr}" : {
+      "put" : {
+        "operationId" : "putGP750",
+        "parameters" : [ {
+          "name" : "gpnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "putGP750_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/putGP750_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hinweis",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "maxLength" : 150
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/putGP750_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/gpdaten/loeschen/{gpnr}" : {
+      "delete" : {
+        "operationId" : "deleteGP7501",
+        "parameters" : [ {
+          "name" : "gpnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "deleteGP7501_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/deleteGP7501_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hinweis",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "maxLength" : 150
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/deleteGP7501_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/gpdaten/speichern/{gpnr}" : {
+      "post" : {
+        "operationId" : "postGP750",
+        "parameters" : [ {
+          "name" : "gpnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "postGP750_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/postGP750_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hinweis",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "maxLength" : 150
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/postGP750_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/gpdaten/verwerfen/{gpnr}" : {
+      "delete" : {
+        "operationId" : "deleteGP750",
+        "parameters" : [ {
+          "name" : "gpnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "deleteGP750_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/deleteGP750_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hinweis",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "maxLength" : 150
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/deleteGP750_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/gpdaten/zurueckweisen/{gpnr}" : {
+      "put" : {
+        "operationId" : "putGP7501",
+        "parameters" : [ {
+          "name" : "gpnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "putGP7501_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/putGP7501_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hinweis",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "maxLength" : 150
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/putGP7501_response_200"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "deleteGP7501_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "FUNKTIONSNAME" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "ANZ_FEHLER" : {
+                  "type" : "integer",
+                  "minimum" : -32768,
+                  "maximum" : 32767
+                },
+                "FEHLER_TAB" : {
+                  "type" : "object",
+                  "properties" : {
+                    "TXT" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "maxLength" : 80
+                      },
+                      "maxItems" : 40,
+                      "minItems" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "REST" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "putGP7501_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "FUNKTIONSNAME" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "ANZ_FEHLER" : {
+                  "type" : "integer",
+                  "minimum" : -32768,
+                  "maximum" : 32767
+                },
+                "FEHLER_TAB" : {
+                  "type" : "object",
+                  "properties" : {
+                    "TXT" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "maxLength" : 80
+                      },
+                      "maxItems" : 40,
+                      "minItems" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "REST" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "postGP750_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "FUNKTIONSNAME" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "ANZ_FEHLER" : {
+                  "type" : "integer",
+                  "minimum" : -32768,
+                  "maximum" : 32767
+                },
+                "FEHLER_TAB" : {
+                  "type" : "object",
+                  "properties" : {
+                    "TXT" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "maxLength" : 80
+                      },
+                      "maxItems" : 40,
+                      "minItems" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "REST" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "putGP750_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "REST" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deleteGP750_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "REST" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deleteGP750_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "FUNKTIONSNAME" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "ANZ_FEHLER" : {
+                  "type" : "integer",
+                  "minimum" : -32768,
+                  "maximum" : 32767
+                },
+                "FEHLER_TAB" : {
+                  "type" : "object",
+                  "properties" : {
+                    "TXT" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "maxLength" : 80
+                      },
+                      "maxItems" : 40,
+                      "minItems" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "REST" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "putGP7501_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "REST" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "postGP750_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "REST" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deleteGP7501_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "REST" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "putGP750_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "FUNKTIONSNAME" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "ANZ_FEHLER" : {
+                  "type" : "integer",
+                  "minimum" : -32768,
+                  "maximum" : 32767
+                },
+                "FEHLER_TAB" : {
+                  "type" : "object",
+                  "properties" : {
+                    "TXT" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "maxLength" : 80
+                      },
+                      "maxItems" : 40,
+                      "minItems" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "REST" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

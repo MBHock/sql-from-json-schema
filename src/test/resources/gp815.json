@@ -1,0 +1,1517 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Lesen 4AP-Daten",
+    "version" : "1.0.0",
+    "title" : "gpinfoneu_info_4ap"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/gpinfoneu/info/4ap",
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/4ap/histo" : {
+      "get" : {
+        "operationId" : "getGP8152",
+        "parameters" : [ {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "getGP8152_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/getGP8152_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "gp",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "ab",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "max",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "aenddat",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 10
+        }, {
+          "name" : "sortmodus",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ma",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/getGP8152_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/4ap/pruef" : {
+      "get" : {
+        "operationId" : "getGP8151",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "getGP8151_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/getGP8151_request"
+          }
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "gp",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "ab",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "max",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "aenddat",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 10
+        }, {
+          "name" : "sortmodus",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ma",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/getGP8151_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/4ap/rueck" : {
+      "get" : {
+        "operationId" : "getGP815",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "getGP815_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/getGP815_request"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "gp",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "ab",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "max",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        }, {
+          "name" : "aenddat",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 10
+        }, {
+          "name" : "sortmodus",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "bedienerId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "ma",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 2147483647,
+          "minimum" : -2147483648
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "normal response",
+            "schema" : {
+              "$ref" : "#/definitions/getGP815_response_200"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "getGP8151_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "FUNKTIONSNAME" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    },
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getGP815_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "SEITE" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#GP" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#ADMIN" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ADMIN" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "ESC_MAX" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "DATUM#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "VAPDAT_ZURW_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ANZAHL" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "HISTO" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "VAPDAT_AEND_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "UNR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "KA" : {
+                    "type" : "integer",
+                    "minimum" : -32768,
+                    "maximum" : 32767
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "VAPDAT_ZUST_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "FS_MITARB#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ZUST" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_GPHIFLD" : {
+                    "type" : "string",
+                    "maxLength" : 18
+                  },
+                  "VAPDAT_GPHIFLD_BEZ" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_ALT_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_NEU_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_STA_ZUST_KZ" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "VAPDAT_ZUST_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ORGE#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "AB_LFD_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MAX_ANZAHL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_ZEILEN" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "SPERR_KZ" : {
+                  "type" : "string",
+                  "maxLength" : 1
+                },
+                "SPERR_USER" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ZUG_GP_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE#ZUST" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MA#AEND" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "VAPDAT_AEND_DAT" : {
+                  "type" : "string",
+                  "maxLength" : 10
+                },
+                "ANZAHL_TREFFER_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_TREFFER_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "MITARB_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getGP815_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "FUNKTIONSNAME" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    },
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getGP8151_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "SEITE" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#GP" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#ADMIN" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ADMIN" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "ESC_MAX" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "DATUM#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "VAPDAT_ZURW_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ANZAHL" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "HISTO" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "VAPDAT_AEND_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "UNR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "KA" : {
+                    "type" : "integer",
+                    "minimum" : -32768,
+                    "maximum" : 32767
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "VAPDAT_ZUST_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "FS_MITARB#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ZUST" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_GPHIFLD" : {
+                    "type" : "string",
+                    "maxLength" : 18
+                  },
+                  "VAPDAT_GPHIFLD_BEZ" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_ALT_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_NEU_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_STA_ZUST_KZ" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "VAPDAT_ZUST_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ORGE#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "AB_LFD_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MAX_ANZAHL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_ZEILEN" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "SPERR_KZ" : {
+                  "type" : "string",
+                  "maxLength" : 1
+                },
+                "SPERR_USER" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ZUG_GP_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE#ZUST" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MA#AEND" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "VAPDAT_AEND_DAT" : {
+                  "type" : "string",
+                  "maxLength" : 10
+                },
+                "ANZAHL_TREFFER_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_TREFFER_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "MITARB_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getGP8152_request" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "UEBERGABE" : {
+              "type" : "object",
+              "properties" : {
+                "STANDARD" : {
+                  "type" : "object",
+                  "properties" : {
+                    "FUNKTIONSNAME" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    },
+                    "NICHT_PRUEFEN" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "TYP_GP" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "TYP_DACH" : {
+                      "type" : "string",
+                      "maxLength" : 20
+                    },
+                    "KONZERN_NR" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_ORGE" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "ZUSTIMM_YID" : {
+                      "type" : "integer",
+                      "minimum" : -2147483648,
+                      "maximum" : 2147483647
+                    },
+                    "BEDIENER" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "ANW_ROLLE" : {
+                      "type" : "string",
+                      "maxLength" : 15
+                    },
+                    "MASSEN_AEND" : {
+                      "type" : "string",
+                      "maxLength" : 1
+                    },
+                    "GPHI_UMGEBUNG" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RUF_PGM" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "DATUM_H" : {
+                      "type" : "string",
+                      "maxLength" : 10
+                    },
+                    "SACH_GEBIET" : {
+                      "type" : "string",
+                      "maxLength" : 6
+                    },
+                    "SPRACHE" : {
+                      "type" : "string",
+                      "maxLength" : 2
+                    },
+                    "ASP_NLSCHL" : {
+                      "type" : "string",
+                      "maxLength" : 3
+                    },
+                    "RESERVE" : {
+                      "type" : "string",
+                      "maxLength" : 50
+                    }
+                  }
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getGP8152_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "CA" : {
+          "type" : "object",
+          "properties" : {
+            "SEITE" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#GP" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#ADMIN" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ADMIN" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "ESC_MAX" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "DATUM#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "VAPDAT_ZURW_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ANZAHL" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "HISTO" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "VAPDAT_AEND_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "GP_NR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "UNR" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "KA" : {
+                    "type" : "integer",
+                    "minimum" : -32768,
+                    "maximum" : 32767
+                  },
+                  "FS_MITARB#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#AEND" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "VAPDAT_ZUST_DAT" : {
+                    "type" : "string",
+                    "maxLength" : 10
+                  },
+                  "FS_MITARB#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "NAME#ZUST" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  },
+                  "FS_GPHIFLD" : {
+                    "type" : "string",
+                    "maxLength" : 18
+                  },
+                  "VAPDAT_GPHIFLD_BEZ" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_ALT_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_WRT_NEU_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 32
+                  },
+                  "VAPDAT_STA_ZUST_KZ" : {
+                    "type" : "string",
+                    "maxLength" : 1
+                  },
+                  "VAPDAT_ZUST_HW_TXT" : {
+                    "type" : "string",
+                    "maxLength" : 150
+                  },
+                  "ORGE#AEND" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "ORGE#ZUST" : {
+                    "type" : "integer",
+                    "minimum" : -2147483648,
+                    "maximum" : 2147483647
+                  },
+                  "RESERVE" : {
+                    "type" : "string",
+                    "maxLength" : 30
+                  }
+                }
+              },
+              "maxItems" : 40,
+              "minItems" : 40
+            },
+            "RUECKGABE" : {
+              "type" : "object",
+              "properties" : {
+                "AB_LFD_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MAX_ANZAHL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_ZEILEN" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "SPERR_KZ" : {
+                  "type" : "string",
+                  "maxLength" : 1
+                },
+                "SPERR_USER" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ZUG_GP_NR" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE#ZUST" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MA#AEND" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "VAPDAT_AEND_DAT" : {
+                  "type" : "string",
+                  "maxLength" : 10
+                },
+                "ANZAHL_TREFFER_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_TREFFER_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_VAPDAT" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ANZAHL_GP" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "ORGE_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "MITARB_ESKAL" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_PRUEF" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_RUECK" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE" : {
+                  "type" : "integer",
+                  "minimum" : -2147483648,
+                  "maximum" : 2147483647
+                },
+                "MITARB_MAX_ESTUFE_TXT" : {
+                  "type" : "string",
+                  "maxLength" : 20
+                },
+                "RESERVE" : {
+                  "type" : "string",
+                  "maxLength" : 30
+                }
+              }
+            },
+            "RUECKGABE_GP740" : {
+              "type" : "object",
+              "properties" : {
+                "EIN" : {
+                  "type" : "object",
+                  "properties" : {
+                    "PGMNAME" : {
+                      "type" : "string",
+                      "maxLength" : 8
+                    },
+                    "RC" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "RS" : {
+                      "type" : "integer",
+                      "minimum" : -32768,
+                      "maximum" : 32767
+                    },
+                    "FEHLKEY" : {
+                      "type" : "number",
+                      "format" : "decimal",
+                      "minimum" : -99999,
+                      "maximum" : 99999
+                    }
+                  }
+                },
+                "AUS" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ZEITSTEMPEL" : {
+                      "type" : "string",
+                      "maxLength" : 26
+                    },
+                    "FEHLERTEXT" : {
+                      "type" : "string",
+                      "maxLength" : 78
+                    },
+                    "AUSGABE" : {
+                      "type" : "string",
+                      "maxLength" : 255
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
