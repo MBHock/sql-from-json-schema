@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -12,63 +13,77 @@ public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getSimpleName());
 
-    private static final Set<String> updateStatements = new TreeSet<>();
-    private static final List<String> missingColumns = new ArrayList<>();
     private static final StringBuilder duplicatEntry = new StringBuilder();
+    private static final PathContentReader content = new PathContentReader();
     private static int duplicateEntryCounter = 0;
 
     public static void main(String... strings) throws IOException {
 
-        List<Path> paths = getAllJsonFileNames();
+        List<Path> paths = findJsonFiles();
 
-        createUpdateStatementForeachField(getAllFieldMetadata(paths));
+        Map<String, List<RecordDetail>> collectRecordDetail = parseFileContentToCollectRecordDetail(paths);
 
-        logger.log(Level.INFO, "*** {0} update statements have been created ***", updateStatements.size());
+        Set<String> insertStatements = createInsertStatementForeachRecord(collectRecordDetail);
+
+        logger.log(Level.INFO, "*** {0} statements have been created ***", insertStatements.size());
 
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator());
-        updateStatements.stream().forEach(stmt -> sb.append(stmt).append(System.lineSeparator()));
+        insertStatements.stream().forEach(stmt -> sb.append(stmt).append(System.lineSeparator()));
         logger.info("\n" + sb);
 
-        logger.log(Level.WARNING, "*** {0} column(s) properties are missing in collected JSON Schema ***", missingColumns.size());
-        logger.log(Level.WARNING, "*** Missing columns are [{0}] ***", missingColumns);
         logger.log(Level.WARNING, "*** {0} duplicate entry found while parsing field metadata ***", duplicateEntryCounter);
         logger.log(Level.WARNING, "Duplicated entries are \n{0}", duplicatEntry);
     }
 
-    private static void createUpdateStatementForeachField(Map<String, List<RecordDetail>> fieldMetadata) {
-
-        fieldMetadata.forEach((k, v) -> {
-            createUpdateStatement(k, v);
-        });
+    private static Set<String> createInsertStatementForeachRecord(Map<String, List<RecordDetail>> fieldMetadata) {
+        return fieldMetadata.values().parallelStream().map(Main::createInsertStatement).collect(Collectors.toCollection(TreeSet::new));
     }
 
-    private static void createUpdateStatement(String fieldName, List<RecordDetail> metadatas) {
+    private static String createInsertStatement(List<RecordDetail> metadatas) {
+        RecordDetail recordDetail = verifyAndGetRecordDetail(metadatas);
 
-        RecordDetail dataTypeProp = verifyAndGetDataTypeProperties(fieldName, metadatas);
+        StringJoiner insertPart = new StringJoiner(",", "(", ")");
+        insertPart.add("FIELD_NAME");
 
-        String minimumPart = null;
-        if(dataTypeProp.getMinimumValue() != null) {
-            minimumPart = String.format("MINIMUM = '%d'", dataTypeProp.getMinimumValue());
+        StringJoiner valuePart = new StringJoiner(",", "(", ")");
+        valuePart.add(formatToSqlValue(recordDetail.getName()));
+
+        if(recordDetail.getMinimumValue() != null) {
+            insertPart.add("MINIMUM");
+            valuePart.add(formatToSqlValue(recordDetail.getMinimumValue()));
         }
 
-        String maximumPart = null;
-        if(dataTypeProp.getMaximumValue() != null) {
-            maximumPart = String.format("MAXIMUM = '%d'", dataTypeProp.getMaximumValue());
+        if(recordDetail.getMaximumValue() != null) {
+            insertPart.add("MAXIMUM");
+            valuePart.add(formatToSqlValue(recordDetail.getMaximumValue()));
         }
 
-        String wherePart = String.format("WHERE GPTYPFLD_FELDNAME = '%s';", fieldName);
-
-        if(minimumPart != null || maximumPart != null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("UPDATE DBZILI02.TBZI0072GPTYPFLD SET");
-            sb.append(minimumPart == null ? String.format(" %s %s", maximumPart, wherePart) : String.format(" %s, %s %s", minimumPart, maximumPart, wherePart));
-            updateStatements.add(sb.toString());
-            logger.log(Level.FINEST, "{0}, UpdateStatement={1}", new Object[]{dataTypeProp, sb});
+        if(recordDetail.getType() != null) {
+            insertPart.add("TYPE");
+            valuePart.add(formatToSqlValue(recordDetail.getType()));
         }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO FIELD_TYPE_VALIDATION ");
+        sb.append(insertPart);
+        sb.append(" VALUES ");
+        sb.append(valuePart);
+        sb.append(";");
+
+        logger.log(Level.FINEST, "{0}, InsertStatement={1}", new Object[]{recordDetail, sb});
+        return sb.toString();
     }
 
-    private static RecordDetail verifyAndGetDataTypeProperties(String fieldName, List<RecordDetail> metadatas) {
+    private static String formatToSqlValue(Object object) {
+        if(object instanceof Number) {
+            return String.format("'%d'", object);
+        }
+        return String.format("'%s'", object);
+
+    }
+
+    private static RecordDetail verifyAndGetRecordDetail(List<RecordDetail> metadatas) {
 
         Map<Long, List<RecordDetail>> grouped = metadatas.stream()
                 .filter(m -> Objects.nonNull(m.getMaximumValue()) || Objects.nonNull(m.getMinimumValue()))
@@ -76,10 +91,10 @@ public class Main {
 
         RecordDetail recordDetail;
         if(grouped.size() > 1) {
-            duplicateEntryCounter++;
-            duplicatEntry.append(String.format("*** %s ***", fieldName)).append(System.lineSeparator());
-            grouped.forEach((k, v) -> duplicatEntry.append(v.get(0)).append(System.lineSeparator()));
             recordDetail = grouped.values().stream().flatMap(List::stream).max(RecordDetail::compareTo).get();
+            duplicateEntryCounter++;
+            duplicatEntry.append(String.format("*** %s ***", recordDetail.getName())).append(System.lineSeparator());
+            grouped.forEach((k, v) -> duplicatEntry.append(v.get(0)).append(System.lineSeparator()));
         }
         else {
             recordDetail = grouped.values().stream().flatMap(List::stream).findFirst().get();
@@ -88,26 +103,25 @@ public class Main {
         return recordDetail;
     }
 
-    private static Map<String, List<RecordDetail>> getAllFieldMetadata(List<Path> paths) {
-        Map<String, List<RecordDetail>> metadatas = paths.stream()
-                .map(Main::readFieldPropertiesFromJson)
+    private static Map<String, List<RecordDetail>> parseFileContentToCollectRecordDetail(List<Path> paths) {
+        Map<String, List<RecordDetail>> recordDetails = paths.stream()
+                .map(Main::parseToGetRecordDetail)
                 .flatMap(List::stream)
                 .peek(Main::verifyResult)
                 .collect(groupingBy(RecordDetail::getName));
 
-        logger.log(Level.INFO, "{0} fields information collected from from Schema {0} files.", new Object[]{metadatas.size(), paths.size()});
-        return metadatas;
+        logger.log(Level.INFO, "{0} fields information collected from from Schema {0} files.", new Object[]{recordDetails.size(), paths.size()});
+        return recordDetails;
     }
 
-    private static List<RecordDetail> readFieldPropertiesFromJson(Path path) {
-        ReadPathContent content = new ReadPathContent();
-        ParseJsonString parser = new ParseJsonString();
-        return parser.parseJsonString(content.readPathContentAsString(path));
+    private static List<RecordDetail> parseToGetRecordDetail(Path path) {
+        JsonStringParser parser = new JsonStringParser();
+        return parser.parseJsonString(content.readContentAsString(path));
     }
 
-    private static List<Path> getAllJsonFileNames() throws IOException {
-        FileNameCollector collector = new FileNameCollector();
-        return collector.getAllJsonSchemaFile();
+    private static List<Path> findJsonFiles() throws IOException {
+        PathCollector collector = new PathCollector();
+        return collector.findPathsFromDirectory();
     }
 
     private static RecordDetail verifyResult(RecordDetail recordDetail) {

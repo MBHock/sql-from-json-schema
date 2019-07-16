@@ -6,16 +6,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ParseJsonString {
+public class JsonStringParser {
 
-    private static final Logger logger = Logger.getLogger(ParseJsonString.class.getSimpleName());
+    private static final Logger logger = Logger.getLogger(JsonStringParser.class.getSimpleName());
     public static final String JSON_TYPE_INTEGER = "integer";
     public static final String JSON_TYPE_NUMBER = "number";
+    private static final List<String> MIN_PROPERTY_NAMES = Arrays.asList("minimum", "minLength");
+    private static final List<String> MAX_PROPERTY_NAMES = Arrays.asList("maximum", "maxLength");
+    public static final String TYPE = "type";
+    public static final String MINIMUM = "minimum";
+    public static final String MIN_LENGTH = "minLength";
+    public static final String MAXIMUM = "maximum";
+    public static final String MAX_LENGTH = "maxLength";
 
     private Deque<RecordDetail> stack = new ArrayDeque<>();
     private List<RecordDetail> validProperties = new ArrayList<>();
@@ -23,13 +29,14 @@ public class ParseJsonString {
     public List<RecordDetail> parseJsonString(String jsonString) {
         JsonObject jsonObject = new JsonParser().parse(jsonString).getAsJsonObject();
 
-        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-            if ("definitions".equalsIgnoreCase(entry.getKey())) {
-                if (entry.getValue().isJsonObject()) {
+        for(Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+            if("definitions".equalsIgnoreCase(entry.getKey())) {
+                if(entry.getValue().isJsonObject()) {
                     createElementObject(entry.getKey());
                     parseJsonElement(entry.getValue());
                     addValidProperties(stack.poll());
-                } else {
+                }
+                else {
                     addElementValue(entry);
                 }
             }
@@ -41,7 +48,7 @@ public class ParseJsonString {
     }
 
     private void addValidProperties(RecordDetail properties) {
-        if (Objects.nonNull(properties) && Objects.nonNull(properties.getType())
+        if(Objects.nonNull(properties) && Objects.nonNull(properties.getType())
                 && (Objects.nonNull(properties.getMinimumValue()) || Objects.nonNull(properties.getMaximumValue()))) {
             validProperties.add(properties);
         }
@@ -50,7 +57,7 @@ public class ParseJsonString {
 
     private void createElementObject(String key) {
         String currentKey = key;
-        if (Objects.isNull(currentKey) || currentKey.indexOf("$") == 0) {
+        if(Objects.isNull(currentKey) || currentKey.indexOf("$") == 0) {
             return;
         }
 
@@ -62,19 +69,16 @@ public class ParseJsonString {
 
     public void parseJsonElement(JsonElement object) {
 
-        for (Map.Entry<String, JsonElement> entry : object.getAsJsonObject().entrySet()) {
-            //Hack: igonre HIGH_LIGHT object
-            if ("HIGH_LIGHT".equalsIgnoreCase(entry.getKey())) {
-                continue;
-            }
-
-            if (entry.getValue().isJsonArray()) {
+        for(Map.Entry<String, JsonElement> entry : object.getAsJsonObject().entrySet()) {
+            if(entry.getValue().isJsonArray()) {
                 parseJsonArray(entry);
-            } else if (entry.getValue().isJsonObject()) {
+            }
+            else if(entry.getValue().isJsonObject()) {
                 createElementObject(entry.getKey());
                 parseJsonElement(entry.getValue());
                 addValidProperties(stack.poll());
-            } else {
+            }
+            else {
                 addElementValue(entry);
             }
         }
@@ -83,38 +87,39 @@ public class ParseJsonString {
     private void parseJsonArray(Map.Entry<String, JsonElement> entry) {
         JsonArray jsonArray = entry.getValue().getAsJsonArray();
         Iterator<JsonElement> iterator = jsonArray.iterator();
-        while (iterator.hasNext()) {
+        while(iterator.hasNext()) {
             JsonElement next = iterator.next();
             parseJsonElement(next);
         }
     }
 
     private void addElementValue(Map.Entry<String, JsonElement> entry) {
-        if (stack.size() == 0) {
+        if(stack.size() == 0) {
             return; // ignored root elements
         }
 
-        if (entry.getValue().isJsonObject()) {
+        if(entry.getValue().isJsonObject()) {
             parseJsonElement(entry.getValue());
-        } else {
+        }
+        else {
             RecordDetail properties = stack.peek();
             setDataTypeProperties(entry, properties);
         }
     }
 
-    private void setDataTypeProperties(Map.Entry<String, JsonElement> entry, RecordDetail properties) {
+    private void setDataTypeProperties(Map.Entry<String, JsonElement> entry, RecordDetail recordDetail) {
 
-        switch (entry.getKey()) {
-            case "type":
-                properties.setType(entry.getValue().getAsString());
+        switch(entry.getKey()) {
+            case TYPE:
+                recordDetail.setType(entry.getValue().getAsString());
                 break;
-            case "minimum":
-            case "minLength":
-                properties.setMinimumValue(parseToGetMinimumValue(entry));
+            case MINIMUM:
+            case MIN_LENGTH:
+                recordDetail.setMinimumValue(parseToGetMinimumValue(entry));
                 break;
-            case "maximum":
-            case "maxLength":
-                properties.setMaximumValue(parseToGetMaximumValue(entry, properties));
+            case MAXIMUM:
+            case MAX_LENGTH:
+                recordDetail.setMaximumValue(parseToGetMaximumValue(entry, recordDetail));
                 break;
             default:
                 break;
@@ -125,25 +130,23 @@ public class ParseJsonString {
 
     private Long parseToGetMinimumValue(Map.Entry<String, JsonElement> entry) {
         String value = entry.getValue().getAsString();
-        return Objects.isNull(value) || value.startsWith("-") ? null : Long.valueOf(value);
+        value = stripDecimalPart(value);
+
+        return Long.valueOf(value);
+    }
+
+    private String stripDecimalPart(String value) {
+        int indexOfDot = value.indexOf(".");
+        if(indexOfDot > 0) {
+            value = value.substring(0, indexOfDot);
+        }
+        return value;
     }
 
     private Long parseToGetMaximumValue(Map.Entry<String, JsonElement> entry, RecordDetail type) {
-        Long maxValue;
-
-        if (JSON_TYPE_INTEGER.equalsIgnoreCase(type.getType()) || JSON_TYPE_NUMBER.equalsIgnoreCase(type.getType())) {
-            String value = entry.getValue().getAsString();
-            maxValue = Objects.isNull(value) ? null : Long.valueOf(value.length());
-        } else {
-            maxValue = entry.getValue().getAsLong();
-        }
-
-        if (Objects.equals("GPGES_BETEIL_BETR", type.getName())) {
-            String s = entry.getValue().getAsString();
-            Long l = entry.getValue().getAsLong();
-            BigDecimal b = entry.getValue().getAsBigDecimal();
-        }
-
-        return maxValue;
+        String value = entry.getValue().getAsString();
+        value = stripDecimalPart(value);
+        return Long.valueOf(value);
     }
+
 }
